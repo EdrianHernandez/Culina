@@ -1,0 +1,7 @@
+{
+  "name": "Culina Digital Cookbook",
+  "description": "A sophisticated, production-ready digital cookbook featuring AI-powered recipe generation, high-impact visuals, and interactive step-by-step cooking guides.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
