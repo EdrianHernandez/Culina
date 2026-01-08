@@ -1,17 +1,7 @@
-
 import React from 'react';
 import { Difficulty } from '../types';
 
-interface RecipeHeroProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  cookingTime: string;
-  difficulty: Difficulty;
-  servings: number;
-}
-
-const RecipeHero: React.FC<RecipeHeroProps> = ({ 
+const RecipeHero = ({ 
   title, 
   description, 
   imageUrl, 
