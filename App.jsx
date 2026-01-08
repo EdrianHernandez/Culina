@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
-import { Recipe, Difficulty } from './types';
+import { Difficulty } from './types';
 import { generateRecipe } from './services/geminiService';
 import RecipeHero from './components/RecipeHero';
 import IngredientList from './components/IngredientList';
 import StepByStepInstructions from './components/StepByStepInstructions';
 import NutritionFacts from './components/NutritionFacts';
 
-const DEFAULT_RECIPE: Recipe = {
+const DEFAULT_RECIPE = {
   id: 'initial',
   title: 'Wild Mushroom Risotto',
   description: 'A creamy, classic Italian arborio rice dish infused with earthy porcini mushrooms, finished with aromatic truffle oil and aged parmesan.',
@@ -43,12 +42,12 @@ const DEFAULT_RECIPE: Recipe = {
   }
 };
 
-const App: React.FC = () => {
-  const [recipe, setRecipe] = useState<Recipe>(DEFAULT_RECIPE);
+const App = () => {
+  const [recipe, setRecipe] = useState(DEFAULT_RECIPE);
   const [searchQuery, setSearchQuery] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
 
@@ -67,7 +66,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#fcfbf7] pb-24 selection:bg-stone-200">
-      {/* Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-2xl border-b border-stone-100/50">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -96,7 +94,6 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-6 md:px-12 py-8 md:py-16">
         {isGenerating ? (
           <div className="min-h-[60vh] flex flex-col items-center justify-center text-center animate-pulse">
@@ -119,17 +116,14 @@ const App: React.FC = () => {
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-              {/* Left Column: Ingredients & Nutrition */}
               <div className="lg:col-span-4 space-y-12 lg:sticky lg:top-32">
                 <IngredientList ingredients={recipe.ingredients} />
                 <NutritionFacts nutrition={recipe.nutrition} />
               </div>
 
-              {/* Right Column: Instructions */}
               <div className="lg:col-span-8">
                 <StepByStepInstructions steps={recipe.steps} />
                 
-                {/* Community/Social Section Placeholder */}
                 <div className="mt-16 p-10 rounded-3xl bg-stone-100 border border-stone-200">
                   <h4 className="text-2xl font-serif font-bold text-stone-900 mb-6 flex items-center gap-3">
                     <svg className="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
@@ -145,7 +139,6 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {/* Mobile Search Bar (Sticky Bottom) */}
       <div className="md:hidden fixed bottom-8 left-6 right-6 z-50">
         <form onSubmit={handleSearch} className="relative shadow-2xl">
           <input
@@ -164,7 +157,6 @@ const App: React.FC = () => {
         </form>
       </div>
 
-      {/* Simple Footer */}
       <footer className="mt-32 pt-24 pb-16 border-t border-stone-100 text-center">
         <div className="max-w-7xl mx-auto px-6">
           <p className="font-serif italic text-xl text-stone-400 mb-8">Crafted for culinary enthusiasts worldwide.</p>
