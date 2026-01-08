@@ -1,12 +1,6 @@
-
 import React from 'react';
-import { NutritionInfo } from '../types';
 
-interface NutritionFactsProps {
-  nutrition: NutritionInfo;
-}
-
-const NutritionFacts: React.FC<NutritionFactsProps> = ({ nutrition }) => {
+const NutritionFacts = ({ nutrition }) => {
   const facts = [
     { label: 'Calories', value: nutrition.calories, unit: 'kcal' },
     { label: 'Protein', value: nutrition.protein, unit: 'g' },
