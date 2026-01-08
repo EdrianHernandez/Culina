@@ -1,15 +1,9 @@
-
 import React, { useState } from 'react';
-import { CookingStep } from '../types';
 
-interface StepByStepInstructionsProps {
-  steps: CookingStep[];
-}
-
-const StepByStepInstructions: React.FC<StepByStepInstructionsProps> = ({ steps: initialSteps }) => {
+const StepByStepInstructions = ({ steps: initialSteps }) => {
   const [steps, setSteps] = useState(initialSteps);
 
-  const toggleStep = (index: number) => {
+  const toggleStep = (index) => {
     const newSteps = [...steps];
     newSteps[index].isCompleted = !newSteps[index].isCompleted;
     setSteps(newSteps);
