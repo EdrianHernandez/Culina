@@ -1,10 +1,8 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
-import { Recipe, Difficulty } from "../types";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
-export const generateRecipe = async (dishName: string): Promise<Recipe> => {
+export const generateRecipe = async (dishName) => {
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
     contents: `Generate a detailed professional recipe for: ${dishName}`,
@@ -63,7 +61,7 @@ export const generateRecipe = async (dishName: string): Promise<Recipe> => {
     ...recipeData,
     id: Math.random().toString(36).substr(2, 9),
     imageUrl: `https://picsum.photos/seed/${encodeURIComponent(dishName)}/1200/600`,
-    steps: recipeData.steps.map((s: any) => ({ ...s, isCompleted: false })),
-    ingredients: recipeData.ingredients.map((i: any) => ({ ...i, id: Math.random().toString(36).substr(2, 5) }))
+    steps: recipeData.steps.map((s) => ({ ...s, isCompleted: false })),
+    ingredients: recipeData.ingredients.map((i) => ({ ...i, id: Math.random().toString(36).substr(2, 5) }))
   };
 };
